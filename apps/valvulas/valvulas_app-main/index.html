@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Levantamiento de Válvulas</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Levantamiento de Válvulas</h1>
+    <p class="subtitle">Registro rápido con foto — Guardado offline y envío cuando haya internet</p>
+  </header>
+
+  <main>
+    <form id="valveForm">
+      <label>Foto de la válvula
+        <input id="photoInput" accept="image/*" capture="environment" type="file" />
+      </label>
+      <div id="previewWrap">
+        <img id="photoPreview" alt="Vista previa válvula" style="display:none;" />
+      </div>
+
+      <label>Foto de la placa
+        <input id="photoPlacaInput" accept="image/*" capture="environment" type="file" />
+      </label>
+      <div id="previewPlacaWrap">
+        <img id="photoPlacaPreview" alt="Vista previa placa" style="display:none;" />
+      </div>
+
+      <label>Cliente <input id="cliente" required /></label>
+      <label>Serie <input id="serie" required /></label>
+      <label>Tag <input id="tag" /></label>
+      <label>Marca <input id="marca" /></label>
+      <label>Modelo <input id="modelo" /></label>
+      <label>Tamaño <input id="tamano" /></label>
+      <label>Set de presión <input id="set" /></label>
+      <label>Ubicación <input id="ubicacion" /></label>
+      <label>Fecha <input id="fecha" type="date" /></label>
+      <label>Observaciones <textarea id="obs"></textarea></label>
+
+      <div class="buttons">
+        <button type="button" id="saveBtn">Guardar local</button>
+      </div>
+    </form>
+
+    <section class="saved">
+      <h2>Hojas guardadas</h2>
+      <ul id="savedList"></ul>
+
+       <div class="buttons">
+        <button id="pdfSelectedBtn">📄 PDF</button>
+        <button id="shareSelectedBtn">📤 Compartir</button>
+        <button id="deleteSelectedBtn" style="background:#dc2626;">🗑️ Eliminar</button>
+        <button id="exportSelectedPhotosBtn">📸 Exportar fotos</button>
+        </div>
+
+    </section>
+
+    <footer>
+      <small>VALSER INDUSTRIALES S.A.S — App de levantamiento de válvulas</small>
+    </footer>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
