@@ -6,12 +6,9 @@ document.addEventListener('click', function (e) {
   const container = document.getElementById('app-container');
   container.innerHTML = '<p>Cargando aplicación...</p>';
 
-  // Detectar base path (corrige rutas en GitHub Pages)
-  const basePath = window.location.pathname
-    .replace(/index\.html$/, '')
-    .replace(/\/$/, '');
-
-  // Intentar cargar el index.html de la app
+  // Detecta el nombre del repositorio para rutas correctas en GitHub Pages
+  const repoName = window.location.pathname.split('/')[1];
+  const basePath = repoName ? `/${repoName}` : '';
   const appPath = `${basePath}/apps/${app}/index.html`;
 
   fetch(appPath)
@@ -21,7 +18,6 @@ document.addEventListener('click', function (e) {
         const wrapper = document.createElement('div');
         wrapper.innerHTML = html;
 
-        // Botón de regreso
         const back = document.createElement('div');
         back.style.marginBottom = '12px';
         back.innerHTML =
@@ -31,12 +27,10 @@ document.addEventListener('click', function (e) {
         container.appendChild(back);
         container.appendChild(wrapper);
 
-        document
-          .getElementById('backBtn')
-          .addEventListener('click', () => {
-            document.getElementById('app-container').innerHTML = '';
-            window.scrollTo(0, 0);
-          });
+        document.getElementById('backBtn').addEventListener('click', () => {
+          document.getElementById('app-container').innerHTML = '';
+          window.scrollTo(0, 0);
+        });
       } else {
         container.innerHTML = `<p>No se encontró un index.html dentro de <b>apps/${app}</b>.<br>Si la aplicación es un servidor Python, se abrirá en un iframe.</p>`;
         if (app === 'instrumentos') {
